@@ -1,2 +1,3 @@
 # OpenSSL-simple-helper
-# OpenSSL-simple-helper
+Set of simple bash scripts that will create ROOT CA, and later on create client certificates from bash.
+Keep in mind that comments are on Serbian, and I do not plan to develop this much, just using Github for storing the files...
