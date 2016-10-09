@@ -10,7 +10,7 @@ echo `touch serial index.txt crlnumber`
 echo 01 > serial 
 echo 01 > crlnumber
 # upit za ime CA sertifikata
-echo -e "\e[1mIme CA sertifikata bez ekstenzije(npr. ca-lilly)\e[0m \c "
+echo -e "\e[1mIme CA sertifikata bez ekstenzije(npr. ca-test)\e[0m \c "
 read certname
 # DIR promenljiva da bi napravio cnf fajl sa direktnom putanjom do foldera...meh
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -125,20 +125,20 @@ crlDistributionPoints = critical, @crl_section
 # Extensions for client certificates (man x509v3_config).
 basicConstraints = critical, CA:FALSE
 #nsCertType = client, email
-#nsComment = "ZUA Lilly Client Certificate"
+#nsComment = "ZUA test Client Certificate"
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer
 keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = clientAuth
-#extendedKeyUsage =, emailProtection - skinuto jer necemo da potpisuju mailove našim klijentskim sertifikatom...  može se dodati novi extension usr_lilly sa omogućenom ovom opcijom
-#nsCaRevocationUrl		= http://www.lilly.rs/ca-crl.pem
+#extendedKeyUsage =, emailProtection - skinuto jer necemo da potpisuju mailove našim klijentskim sertifikatom...  može se dodati novi extension usr_mail sa omogućenom ovom opcijom
+#nsCaRevocationUrl		= http://www.test.rs/ca-crl.pem
 crlDistributionPoints	= @crl_section
 
 [ server_cert ]
 # Extensions for server certificates (man x509v3_config). Služi za potpisivanje servera
 basicConstraints = CA:FALSE
 nsCertType = server
-nsComment = "ZUA Lilly Server Certificate"
+nsComment = "ZUA test Server Certificate"
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid,issuer:always
 keyUsage = critical, digitalSignature, keyEncipherment
@@ -150,7 +150,7 @@ authorityKeyIdentifier=keyid:always
 
 [crl_section]
 # javna adresa CRL liste (vec je definisana u Apache ssl.conf ali je praksa da stoji i ovde)
-URI.0	=	https://ca.lilly.rs/$certname.crl.pem
+URI.0	=	https://ca.test.rs/$certname.crl.pem
 
 [ ocsp ]
 # Extension for OCSP signing certificates (man ocsp).
